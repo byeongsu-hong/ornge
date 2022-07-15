@@ -1,0 +1,12 @@
+syntax = "proto3";
+package frostornge.igniteexample.igniteexample;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/frostornge/ignite-example/x/igniteexample/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}
