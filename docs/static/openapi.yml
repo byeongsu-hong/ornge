@@ -19749,10 +19749,10 @@ paths:
           format: int64
       tags:
         - Query
-  /frostornge/ignite-example/igniteexample/params:
+  /frostornge/ornge/ornge/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: FrostorngeIgniteexampleIgniteexampleParams
+      operationId: FrostorngeOrngeOrngeParams
       responses:
         '200':
           description: A successful response.
@@ -47128,10 +47128,10 @@ definitions:
     description: >-
       MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount
       response type.
-  frostornge.igniteexample.igniteexample.Params:
+  frostornge.ornge.ornge.Params:
     type: object
     description: Params defines the parameters for the module.
-  frostornge.igniteexample.igniteexample.QueryParamsResponse:
+  frostornge.ornge.ornge.QueryParamsResponse:
     type: object
     properties:
       params:

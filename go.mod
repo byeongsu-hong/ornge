@@ -1,4 +1,4 @@
-module github.com/frostornge/ignite-example
+module github.com/frostornge/ornge
 
 go 1.16
 

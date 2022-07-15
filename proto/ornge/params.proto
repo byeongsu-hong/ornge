@@ -1,0 +1,12 @@
+syntax = "proto3";
+package frostornge.ornge.ornge;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/frostornge/ornge/x/ornge/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}
