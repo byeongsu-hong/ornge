@@ -1,24 +1,43 @@
 package main
 
 import (
-	"fmt"
 	"github.com/frostornge/ornge/app"
-	abciserver "github.com/tendermint/tendermint/abci/server"
+	abciclient "github.com/tendermint/tendermint/abci/client"
+	tmconfig "github.com/tendermint/tendermint/config"
+	tmlog "github.com/tendermint/tendermint/libs/log"
+	tmnode "github.com/tendermint/tendermint/node"
+	"os"
+	"path"
 )
 
 func main() {
-	server, err := abciserver.NewServer(
-		fmt.Sprintf("localhost:%d", 26658),
-		"grpc",
-		app.NewApp(),
+	logger, err := tmlog.NewDefaultLogger(
+		tmlog.LogFormatPlain,
+		tmlog.LogLevelInfo,
+		true,
 	)
 	if err != nil {
 		panic(err)
 	}
 
-	if err := server.Start(); err != nil {
+	home, err := os.UserHomeDir()
+	if err != nil {
 		panic(err)
 	}
 
-	server.Wait()
+	cfg := tmconfig.DefaultConfig()
+	cfg.Mode = tmconfig.ModeValidator
+	cfg.SetRoot(path.Join(home, ".tendermint"))
+
+	creator := abciclient.NewLocalCreator(app.NewApp())
+	node, err := tmnode.New(cfg, logger, creator, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := node.Start(); err != nil {
+		panic(err)
+	}
+
+	node.Wait()
 }
